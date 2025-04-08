@@ -1,20 +1,23 @@
 package com.eliharison.caluladora.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun ResultDisplay(value: String) {
     OutlinedTextField(
         value = value,
         onValueChange = {},
-        label = { Text("Resultado", style = MaterialTheme.typography.bodyMedium) },
+        label = { Text("Resultado", style = MaterialTheme.typography.bodyLarge) },
         readOnly = true,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .height(85.dp),
         shape = MaterialTheme.shapes.large,
         singleLine = true
     )

@@ -3,6 +3,7 @@ package com.eliharison.caluladora.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,42 +34,29 @@ fun CalculatorScreen(modifier: Modifier = Modifier) {
         Column(
             modifier = modifier
                 .padding(padding)
-                .padding(horizontal = 24.dp, vertical = 16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+                .padding(horizontal = 24.dp, vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
+
             Input(value = primary_input, onValueChange = { primary_input = it }, label = "Digite o 1º valor")
             Input(value = second_input, onValueChange = { second_input = it }, label = "Digite o 2º valor")
             OperatorRow(selectedOperator = operator, onOperatorSelected = { operator = it })
             ResultDisplay(value = output)
-
-            Button(
-                onClick = {
+            Actions(
+                modifier = Modifier.padding(8.dp),
+                onCalculateClick = {
                     output = performCalculation(primary_input, second_input, operator)
                 },
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = MaterialTheme.shapes.large,
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-            ) {
-                Text("Calcular", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimary)
-            }
-
-            OutlinedButton(
-                onClick = {
+                onClearClick = {
                     primary_input = ""
                     second_input = ""
                     output = ""
                     operator = ""
-                },
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = MaterialTheme.shapes.large
-            ) {
-                Text("Limpar", style = MaterialTheme.typography.titleMedium)
-            }
+                }
+            )
+
+
         }
     }
 }
